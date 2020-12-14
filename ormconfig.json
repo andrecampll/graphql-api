@@ -1,0 +1,17 @@
+{
+  "type": "postgres",
+	"host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "docker",
+  "database": "graphql-api",
+  "migrations": [
+		"./src/database/migrations/*.ts"
+	],
+	"cli": {
+		"migrationsDir": "./src/database/migrations"
+  },
+  "entities": [
+    "./src/models/**.ts"
+  ]
+}
