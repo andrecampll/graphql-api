@@ -2,11 +2,6 @@
   <img src="https://dowhile.rocketseat.com.br/logo.svg" />
 </p>
 
-<p align="center">
-  (the logo is better to see in dark mode)
-</p>
-
-
 # DoWhile Project 🚀
 Esse repositório é referente ao desafio 1 proposto no evento DoWhile, da Rocketseat 🚀 <br />
 
