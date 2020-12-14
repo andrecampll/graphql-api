@@ -44,6 +44,15 @@ class Response {
   user?: User
 }
 
+@InputType()
+class AuthRequest {
+  @Field()
+  email: string;
+
+  @Field()
+  password: string;
+}
+
 @Resolver()
 export class UserResolver {
 
@@ -65,6 +74,28 @@ export class UserResolver {
 
     return {
       user,
+      errors,
+    };
+  }
+
+  @Mutation(() => Response)
+  async login(
+    @Arg('options') options: AuthRequest,
+  ): Promise<Response> {
+    const { email, password } = options;
+
+    const userRepository = new UsersRepository();
+
+    const authenticateUser = new CreateSessionService(userRepository);
+
+    const { user, errors, token } = await authenticateUser.execute({
+      email,
+      password,
+    });
+
+    return {
+      user,
+      token,
       errors,
     };
   }
