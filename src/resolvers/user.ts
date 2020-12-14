@@ -8,6 +8,9 @@ import {
 } from 'type-graphql';
 import User from '../models/User';
 
+import UsersRepository from '../repositories/UsersRepository';
+import CreateUserService from '../services/CreateUserService';
+
 @InputType()
 class RegisterRequest {
   @Field()
@@ -48,6 +51,21 @@ export class UserResolver {
   async register(
     @Arg('options') options: RegisterRequest,
   ): Promise<Response> {
-    
+    const { name, email, password } = options;
+
+    const userRepository = new UsersRepository();
+
+    const createUser = new CreateUserService(userRepository);
+
+    const { user, errors } = await createUser.execute({
+      name,
+      email,
+      password,
+    });
+
+    return {
+      user,
+      errors,
+    };
   }
 }
