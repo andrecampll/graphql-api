@@ -10,6 +10,7 @@ import User from '../models/User';
 
 import UsersRepository from '../repositories/UsersRepository';
 import CreateUserService from '../services/CreateUserService';
+import CreateSessionService from '../services/CreateSessionService';
 
 @InputType()
 class RegisterRequest {
