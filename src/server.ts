@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 
-import AppError from './errors/AppError';
+import ApplicationClassError from './errors/ApplicationClassError';
 
 import './database';
 
@@ -28,7 +28,7 @@ const main = async () => {
   });
 
   app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
-    if (err instanceof AppError) {
+    if (err instanceof ApplicationClassError) {
       return response.status(err.statusCode).json({
         status: 'error',
         message: err.message,
@@ -44,7 +44,7 @@ const main = async () => {
   });
 
   app.listen(3333, () => {
-    console.log('🚀 Server started on port 3333');
+    console.log('🚀 Your server is started on port 3333!');
   });
 }
 
